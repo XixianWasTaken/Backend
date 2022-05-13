@@ -16,31 +16,31 @@ func NewModels(db *sql.DB) Models {
 }
 
 type Movie struct {
-	ID          int          `json:"id"`
-	Title       string       `json:"title"`
-	Description string       `json:"description"`
-	Year        int          `json:"year"`
-	ReleaseDate time.Time    `json:"release_date"`
-	Runtime     int          `json:"runtime"`
-	Rating      int          `json:"rating"`
-	MPAARating  string       `json:"mpaa_rating"`
-	CreateAt    time.Time    `json:"created_at"`
-	UpdateAt    time.Time    `json:"updated_at"`
-	MovieGenre  []MovieGenre `json:"genres"`
+	ID          int            `json:"id"`
+	Title       string         `json:"title"`
+	Description string         `json:"description"`
+	Year        int            `json:"year"`
+	ReleaseDate time.Time      `json:"release_date"`
+	Runtime     int            `json:"runtime"`
+	Rating      int            `json:"rating"`
+	MPAARating  string         `json:"mpaa_rating"`
+	CreateAt    time.Time      `json:"-"`
+	UpdateAt    time.Time      `json:"-"`
+	MovieGenre  map[int]string `json:"genres"`
 }
 
 type Genre struct {
-	ID        int       `json:"id"`
+	ID        int       `json:"-"`
 	GenreName string    `json:"genre_name"`
-	CreateAt  time.Time `json:"created_at"`
-	UpdateAt  time.Time `json:"updated_at"`
+	CreateAt  time.Time `json:"-"`
+	UpdateAt  time.Time `json:"-"`
 }
 
 type MovieGenre struct {
-	ID       int       `json:"id"`
-	MovieID  int       `json:"movie_id"`
-	GenreID  int       `json:"genre_id"`
-	Genre    Genre     `json:""`
-	CreateAt time.Time `json:"created_at"`
-	UpdateAt time.Time `json:"updated_at"`
+	ID       int       `json:"-"`
+	MovieID  int       `json:"-"`
+	GenreID  int       `json:"-"`
+	Genre    Genre     `json:"genre"`
+	CreateAt time.Time `json:"-"`
+	UpdateAt time.Time `json:"-"`
 }
